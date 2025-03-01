@@ -1,7 +1,7 @@
 import { useState } from "react";
 import supabase from "./supabaseClient";
 
-const SignupForm = () => {
+const signupForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     mahjong_type: "",
@@ -15,7 +15,7 @@ const SignupForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { data, error } = await supabase.from("signup").insert([formData]);
+    const { data, error } = await supabase.from("signupform").insert([formData]);
 
     if (error) {
       alert("Signup failed!");
@@ -67,4 +67,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default signupform;
