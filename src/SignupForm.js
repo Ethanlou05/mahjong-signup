@@ -1,22 +1,25 @@
 import { useState } from "react";
 import supabase from "./supabaseClient";
 
-function SignupForm() {
-  const [name, setName] = useState("");
-  const [mahjongType, setMahjongType] = useState("");
-  const [experience, setExperience] = useState("");
-  const [language, setLanguage] = useState("");
-  const [friends, setFriends] = useState(0);
+const SignupForm = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    mahjongType: "",
+    experienceLevel: "",
+    language: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const { data, error } = await supabase.from("Signup").insert([
-      { name, mahjongType, experience, language, friends },
-    ]);
+    const { data, error } = await supabase.from("Signup").insert([formData]);
 
     if (error) {
-      console.error("Signup failed:", error);
+      alert("Signup failed!");
+      console.error(error);
     } else {
       alert("Signup successful!");
     }
@@ -24,15 +27,44 @@ function SignupForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Mahjong Signup</h2>
-      <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required />
-      <input type="text" placeholder="Mahjong Type" value={mahjongType} onChange={(e) => setMahjongType(e.target.value)} required />
-      <input type="text" placeholder="Experience Level" value={experience} onChange={(e) => setExperience(e.target.value)} required />
-      <input type="text" placeholder="Preferred Language" value={language} onChange={(e) => setLanguage(e.target.value)} required />
-      <input type="number" placeholder="Friends Bringing" value={friends} onChange={(e) => setFriends(e.target.value)} required />
-      <button type="submit">Submit</button>
+      <label>
+        Name:
+        <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+      </label>
+
+      <label>
+        Mahjong Type:
+        <select name="mahjongType" value={formData.mahjongType} onChange={handleChange} required>
+          <option value="">Select a type</option>
+          <option value="Riichi">Riichi</option>
+          <option value="Hong Kong">Hong Kong</option>
+          <option value="Chinese Official">Chinese Official</option>
+        </select>
+      </label>
+
+      <label>
+        Experience Level:
+        <select name="experienceLevel" value={formData.experienceLevel} onChange={handleChange} required>
+          <option value="">Select experience level</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+        </select>
+      </label>
+
+      <label>
+        Preferred Language:
+        <select name="language" value={formData.language} onChange={handleChange} required>
+          <option value="">Select a language</option>
+          <option value="English">English</option>
+          <option value="Mandarin">Mandarin</option>
+          <option value="Cantonese">Cantonese</option>
+        </select>
+      </label>
+
+      <button type="submit">Sign Up</button>
     </form>
   );
-}
+};
 
 export default SignupForm;
