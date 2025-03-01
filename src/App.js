@@ -4,7 +4,7 @@ function App() {
   return (
     <div>
       <h1>Mahjong Signup</h1>
-      <SignupForm />
+      <signupForm />
     </div>
   );
 }
