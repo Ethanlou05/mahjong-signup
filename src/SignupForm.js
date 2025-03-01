@@ -15,7 +15,7 @@ const SignupForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { data, error } = await supabase.from("Signup").insert([formData]);
+    const { data, error } = await supabase.from("signup").insert([formData]);
 
     if (error) {
       alert("Signup failed!");
