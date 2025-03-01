@@ -4,6 +4,7 @@ import supabase from "./supabaseClient";
 const signupform = () => {
   const [formData, setFormData] = useState({
     name: "",
+    zid: "",
     mahjong_type: "",
     experience: "",
     language: "",
@@ -33,12 +34,18 @@ const signupform = () => {
       </label>
 
       <label>
+        Zid:
+        <input type="text" name="zid" value={formData.zid} onChange={handleChange} required />
+      </label>
+  
+      <label>
         Mahjong Type:
         <select name="mahjong_type" value={formData.mahjong_type} onChange={handleChange} required>
           <option value="">Select a type</option>
           <option value="Riichi">Riichi</option>
           <option value="Hong Kong">Hong Kong</option>
           <option value="Chinese Official">Chinese Official</option>
+          <option value="Other">Other</option>
         </select>
       </label>
 
@@ -59,6 +66,7 @@ const signupform = () => {
           <option value="English">English</option>
           <option value="Mandarin">Mandarin</option>
           <option value="Cantonese">Cantonese</option>
+          <option value="Other">Other</option>
         </select>
       </label>
 
