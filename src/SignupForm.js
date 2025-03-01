@@ -4,8 +4,8 @@ import supabase from "./supabaseClient";
 const SignupForm = () => {
   const [formData, setFormData] = useState({
     name: "",
-    mahjongType: "",
-    experienceLevel: "",
+    mahjong_type: "",
+    experience: "",
     language: "",
   });
 
