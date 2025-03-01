@@ -1,7 +1,7 @@
 import { useState } from "react";
 import supabase from "./supabaseClient";
 
-const signupForm = () => {
+const signupform = () => {
   const [formData, setFormData] = useState({
     name: "",
     mahjong_type: "",
