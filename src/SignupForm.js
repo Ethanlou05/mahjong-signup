@@ -34,7 +34,7 @@ const SignupForm = () => {
 
       <label>
         Mahjong Type:
-        <select name="mahjongType" value={formData.mahjongType} onChange={handleChange} required>
+        <select name="mahjong_type" value={formData.mahjong_type} onChange={handleChange} required>
           <option value="">Select a type</option>
           <option value="Riichi">Riichi</option>
           <option value="Hong Kong">Hong Kong</option>
@@ -44,7 +44,7 @@ const SignupForm = () => {
 
       <label>
         Experience Level:
-        <select name="experienceLevel" value={formData.experienceLevel} onChange={handleChange} required>
+        <select name="experience" value={formData.experience} onChange={handleChange} required>
           <option value="">Select experience level</option>
           <option value="Beginner">Beginner</option>
           <option value="Intermediate">Intermediate</option>
